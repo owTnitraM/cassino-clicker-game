@@ -56,7 +56,7 @@ Unfortunately, the game was not developed with responsive design in mind. At the
 
 ## License
 
-This project is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/) — see the `LICENSE` file for details.
+This project is licensed under a custom license — see the `LICENSE` file for details.
 
 ---
 
