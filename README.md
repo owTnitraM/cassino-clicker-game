@@ -17,13 +17,17 @@ Build and manage your casino by:
 
 ---
 
-## Planned Features For the Future
+## Planned Features and Improvements For the Future
 
+- Extension of the prestige tree
 - Achievement system  
 - Research system  
 - Account and login functionality  
 - Online leaderboard  
 - Support for a responsive design
+- Finalize the game's artwork and visual design
+- Further thematization of the game
+- Enhance the overall player experience with balances and UI/UX updates
 
 ---
 
@@ -44,6 +48,12 @@ No installation needed — it's a fully front-end game.
 
 ---
 
+## Compatibility
+
+Unfortunately, the game was not developed with responsive design in mind. At the time, I did not have the knowledge to implement it properly. The game is intended to be played on a PC and offers three fixed resolution options for display. In the future, support for responsive design may be added as part of the planned improvements.
+
+---
+
 ## License
 
 This project is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/) — see the `LICENSE` file for details.
@@ -61,8 +71,6 @@ This project is licensed under the [Apache 2.0 License](http://www.apache.org/li
 Originally a personal learning project, this game evolved into my final project for a high school IT course. My professors encouraged its development due to its originality and complexity. It became the most advanced project in the class.
 
 Although not all systems (like accounts or visuals) were completed, the main gameplay loop is functional and I received top marks. Friends contributed to some of the artwork, while I designed and implemented all game logic and mechanics.
-
-Unfortunately, the game was not developed with responsive design in mind. At the time, I did not have the knowledge to implement it properly. The game is intended to be played on a PC and offers three fixed resolution options for display. In the future, support for responsive design may be added as part of the planned improvements.
 
 **Third-party Assets:**  
 - Bar 1 Icon 1  
