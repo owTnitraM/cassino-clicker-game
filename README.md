@@ -2,7 +2,7 @@
 
 This casino-themed incremental clicker game was developed in early 2024 using **HTML5**, **CSS3**, and **JavaScript** as a personal project to improve my programming, logic, and game design skills.
 
-🔗 Play online: *(WIP)*
+🔗 Play online [here](https://owtnitram.github.io/cassino-clicker-game/)!
 
 ---
 
