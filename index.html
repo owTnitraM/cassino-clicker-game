@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cassino Incremental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg" id="bg">
+        <div class="painel">
+            ----- Painel ------------------------------------------------------------------
+            <p>
+            <p>Dinheiro sujo: <span id="dinheiroSujo"></span> $ | Dinheiro limpo: <span id="dinheiroLimpo"></span> $</p>
+            <p>m1: <span id="m1"></span> $ | m2: <span id="m2"></span> $</p>
+            <p>Renda: <span id="renda"></span> $/s | Lavagem: <span id="lavagem"></span> $/s</p>
+            <p>Prestigios: <span id="prestigios"></span> | Fragmentos celestiais: <span
+                    id="fragmentosCelestiais"></span></p>
+            </p>
+            <p>
+                <button class="m1Button" id="m1Button" type="button" onclick="doM1()">m1</button> <button
+                    class="m1Lavar" onclick="doM2()">Lavar dinheiro</button>
+            </p>
+            <!-- <p>
+                <button onclick="devFt(1)" class="devStuff">sujo</button> <button onclick="devFt(2)"
+                    class="devStuff">zerar</button>
+                <button onclick="devFt(3)" class="devStuff">lavar muito</button> <button onclick="devFt(5)"
+                    class="devStuff">frag</button>
+                <button onclick="devFt(4)" class="devStuff">give auto</button> <button onclick="devFt(6)"
+                    class="devStuff">ficha</button>
+            </p> -->
+        </div>
+        <div class="etc">
+            <div class="estatisticas" id="stats">
+                - Estatisticas - <!--   -->
+                Tempo de jogo: <span id="diasDeGameplay"></span>d, <span id="horasDeGameplay"></span>h, <span
+                    id="minutosDeGameplay"></span>m, <span id="segundosDeGameplayDivididos"></span>s
+                <p>
+                    Dinheiro sujo total: <span id="dinheiroSujoTotal"></span> $
+                </p>
+                <p>Dinheiro limpo total: <span id="dinheiroLimpoTotal"></span> $</p>
+                <p>
+                    Fichas Celestiais: <span id="fichasCelestiais"></span> | Cliques: <span id="numeroDeClicks"></span>
+                </p>
+                <p>Fichas Celestiais Totais: <span id="fichasCelestiaisTotais"></span> | Bonus das fichas: +<span id="fichaBonusDisplay"></span>%</p>
+                <p>Fragmentos Celestiais Totais: <span id="fragmentosCelestiaisTotais"></span></p>
+                <p>Total Apostado: <span id="totalApostado"></span> $ | Big wins: <span id="bigWins"></span></p>
+                <p>Vitorias no cassino: <span id="vitoriasNoCassino"></span> | Valor ganho: <span
+                        id="ganhosEmAposta"></span> $</p>
+                <p>Derrotas no cassino: <span id="derrotasNoCassino"></span> | Valor perdido: <span
+                        id="perdasEmApostas"></span> $</p>
+                <!-- <button type="button" onclick="as(1)" class="devStuff"> as1</button>
+                <button type="button" onclick="as(2)" class="devStuff"> as2</button>
+                <button type="button" onclick="as(3)" class="devStuff"> as3</button>
+                <button type="button" onclick="as(4)" class="devStuff"> as4</button>
+                <button type="button" onclick="as(5)" class="devStuff"> as5</button>
+                <button type="button" onclick="as(6)" class="devStuff"> as6</button>
+                <button type="button" onclick="as(7)" class="devStuff"> as7</button> -->
+            </div>
+            <div class="creditos" id="credits">
+                <div class="nomes">
+                    <p>Made by: Martin 2, also known by owTnitraM</p>
+                    <p>Some assets were made by my friends who<br>wanted to help with the project!</p>
+                </div>
+                <div class="agradecimento">- Obrigado por jogar! -</div>
+                <p>space - m1 | enter - m2 | 1 - 7 Chave de compra</p>
+                <p>a s d - barra 1 - 1 2 3 | z x c - barra 2 - 1 2 3 | + e - zoom</p>
+                <p>b - buyAll | v - auto clicker</p>
+                <!-- <p>f g h - r t y --- devstuff</p> -->
+            </div>
+            <div class="miscBtns">
+                <button type="button" onclick="doMisc()" id="btnCredit"></button>
+                <button type="button" onclick="doZoom('plus')" id="btnZoomPlus"></button>
+                <button type="button" onclick="doZoom('minus')" id="btnZoomMinus"></button>
+                <button type="button" onclick="doAutoClicker()" id="btnAutoClicker"></button>
+            </div>
+        </div>
+        <div class="setor1">
+            <div class="painelSetor1">
+                <div class="upgrades" id="upgradesPrincipal">
+                    --- Upgrades ------------------------------------------------------------
+                    <p> Chave de compra: x<span id="buyXDisplay"></span> <button class="keyBtn"
+                            onclick="mudarKey(1, 0)">x1</button>
+                        <button class="keyBtn" onclick="mudarKey(5, 0)">x5</button>
+                        <button class="keyBtn" onclick="mudarKey(10 ,0)">x10</button>
+                        <button class="keyBtn" onclick="mudarKey(25, 0)">x25</button>
+                        <button class="keyBtn" onclick="mudarKey(50, 0)">x50</button>
+                        <button class="keyBtn" onclick="mudarKey(100, 0)">x100</button>
+                        <button class="keyBtn" onclick="mudarKey(9999, 1)">MAX</button>
+                    </p>
+                    <p> - Comprar +<span id="ganhoPorM1Upg"></span> m1 por: <span id="m1UpgPrice"></span> $ <button
+                            class="buyBtn" onclick="buyM1()">COMPRAR</button></p>
+                    <p>(<span id="m1UpgComprados"></span>) Adquirido/s | +<span id="ganhoPorM1UpgTotal"></span> m1
+                    </p>
+                    <p> - Comprar +<span id="ganhoRenda1"></span> renda/s por: <span id="rendaUpg1Price"></span> $
+                        <button class="buyBtn" onclick="buyRendaPorSegundoUpg1()">COMPRAR</span></button>
+                    </p>
+                    <p>(<span id="renda1comprados"></span>) Adquirido/s | +<span id="ganhoRenda1total"></span> Renda
+                    </p>
+                    <P> - Comprar +<span id="ganhoRenda2"></span> renda/s por: <span id="rendaUpg2Price"></span> $
+                        <button class="buyBtn" onclick="buyRendaPorSegundoUpg2()">COMPRAR</button>
+                    </p>
+                    <P>(<span id="renda2comprados"></span>) Adquirido/s | +<span id="ganhoRenda2total"></span> renda
+                    </p>
+                    <p id="barraRand">----------------------------------------------------------------------------</p>
+                    <p>- Comprar +<span id="ganhoM2"></span> m2 por: <span id="m2UpgPrice"></span> $ <button
+                            type="button" class="buyBtn" onclick="buyM2()">COMPRAR</button></p>
+                    <p>(<span id="m2UpgComprados"></span>) Adquirido/s | +<span id="ganhoM2Total"></span> m2</p>
+                    <p>- Comprar +<span id="ganhoLavagem1"></span> lavagem/s por: <span id="lavagem1UpgPrice"></span> $
+                        <button type="button" class="buyBtn" onclick="buyLavagemPorSegundoUpg1()">COMPRAR</button>
+                    </p>
+                    <p>(<span id="lavagem1Comprados"></span>) Adquirido/s | +<span id="ganhoLavagem1Total"></span>
+                        lavagem/s</p>
+                    <p>- Comprar +<span id="ganhoLavagem2"></span> lavagem/s por: <span id="lavagem2UpgPrice"></span> $
+                        <button type="button" class="buyBtn" onclick="buyLavagemPorSegundoUpg2()">COMPRAR</button>
+                    </p>
+                    <p>(<span id="lavagem2Comprados"></span>) Adquirido/s | +<span id="ganhoLavagem2Total"></span>
+                        lavagem/s</p>
+                    </p>
+                </div>
+                <div class="cassino" id="cassino">
+                    --- Cassino ---------------------------| Selecionar face apostada: ------
+                    <input type="number" name="apostaCassino" id="apostaCassino">
+                    <button type="button" id="currencySwitch" onclick="changeGambleCurrency()"></button>
+                    <button type="button" id="allIn" onclick="spinCoin(1)">TUDO</button>
+                    <button type="button" class="btnCara" onclick="aferirAposta('cara')">Cara</button><button
+                        type="button" class="btnCoroa" onclick="aferirAposta('coroa')">Coroa</button>
+                    <button type="button" id="btnApostar" onclick="spinCoin(0)">Apostar</button>
+                    <p id="suaAposta">Sua aposta: Não aferida.</p>
+                    <p id="resultadoMoeda">Moeda: Não jogada.</p>
+                    <p id="resultadoAposta">Resultado: ?</p>
+                    <div id="cassinoMoeda"></div>
+                </div>
+                <div class="placar" id="placar">
+                    <p>WIP - placar</p>
+                </div>
+            </div>
+            <div class="menuBarra1">
+                <div class="btn1Barra1" id="btn1Barra1" onclick="doBarraPainel(11)"></div>
+                <div class="btn2Barra1" id="btn2Barra1" onclick="doBarraPainel(21)"></div>
+                <div class="btn3Barra1" id="btn3Barra1" onclick="doBarraPainel(31)"></div>
+            </div>
+        </div>
+        <div class="setor2">
+            <div class="painelSetor2">
+                <div class="melhorias1time" id="melhorias1time">
+                    --- Melhorias Unicas -------------------------------------------------- <button type="button"
+                        class="keyBtn" onclick="buyAll1TimeUpgs()">BUY ALL</button> +<span id="hardM1Bonus"></span> m1 |
+                    <span id="m1UpgMultiplier"></span>x m1 | <span id="rendaUpgMultiplier"></span>x renda | +<span
+                        id="hardM2Bonus"></span> m2 | <span id="m2UpgMultiplier"></span>x m2 | <span
+                        id="lavagemUpgMultiplier"></span>x lavagem</p>
+
+                    <button class="upgBtn1T" id="buy1timeUpg1"
+                        onclick="buy1timeUpg('hardM1', 5, upg1time1price, 1)">+<span id="hardM1From1Time1"></span> m1
+                        por <spna id="upg1time1price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg2"
+                        onclick="buy1timeUpg('lavagemUpgMultiplier', 2, upg1time2price, 2)">2x lavagem por <spna
+                            id="upg1time2price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg3"
+                        onclick="buy1timeUpg('m1UpgMultiplier', 1.00, upg1time3price, 3)">+100% m1 por <spna
+                            id="upg1time3price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg4"
+                        onclick="buy1timeUpg('rendaUpgMultiplier', 2, upg1time4price, 4)">2x renda por <spna
+                            id="upg1time4price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg5"
+                        onclick="buy1timeUpg('m2UpgMultiplier', 1.00, upg1time5price, 5)">+100% m2 por <spna
+                            id="upg1time5price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg6"
+                        onclick="buy1timeUpg('rendaUpgMultiplier', 2, upg1time6price, 6)">2x renda por <spna
+                            id="upg1time6price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg7"
+                        onclick="buy1timeUpg('hardM2', 10, upg1time7price, 7)">+<span id="hardM2From1Time1"></span> m2
+                        por <spna id="upg1time7price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg8"
+                        onclick="buy1timeUpg('hardM1', 15, upg1time8price, 8)">+<span id="hardM1From1Time2"></span> m1
+                        por <spna id="upg1time8price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg9"
+                        onclick="buy1timeUpg('hasM2ToLavagemUpg', null, upg1time9price, 9)">Adiciona metade do m2 a
+                        lavagem/s por <spna id="upg1time9price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg10"
+                        onclick="buy1timeUpg('lavagemUpgMultiplier', 2, upg1time10price, 10)">2x lavagem por <spna
+                            id="upg1time10price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg11"
+                        onclick="buy1timeUpg('m1UpgMultiplier', 2.00, upg1time11price, 11)">+200% m1 por <spna
+                            id="upg1time11price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg12"
+                        onclick="buy1timeUpg('m2UpgMultiplier', 3.00, upg1time12price, 12)">+300% m2 por <spna
+                            id="upg1time12price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg13"
+                        onclick="buy1timeUpg('rendaUpgMultiplier', 3, upg1time13price, 13)">3x renda por <spna
+                            id="upg1time13price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg14"
+                        onclick="buy1timeUpg('hardM2', 10, upg1time14price, 14)">+<span id="hardM2From1Time2"></span> m2
+                        por <spna id="upg1time14price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg15"
+                        onclick="buy1timeUpg('rendaToM1', null, upg1time15price, 15)">Adiciona 15% da renda/s ao m1 por
+                        <spna id="upg1time15price"></spna>$
+                    </button>
+                    <button class="upgBtn1T" id="buy1timeUpg16"
+                        onclick="buy1timeUpg('lavagemUpgMultiplier', 3, upg1time16price, 16)">3x lavagem por <spna
+                            id="upg1time16price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg17"
+                        onclick="buy1timeUpg('m1UpgMultiplier', 1.00, upg1time17price, 17)">+100% m1 por <spna
+                            id="upg1time17price"></spna>$</button>
+                    <button class="upgBtn1T" id="buy1timeUpg18"
+                        onclick="buy1timeUpg('m2UpgMultiplier', 3.00, upg1time18price, 18)">+300% m2 por <spna
+                            id="upg1time18price"></spna>$</button>
+                </div>
+                <div class="arvorePrestigio" id="arvorePrestigio">
+                    --- Arvore do prestigio --- Multiplicador do prestigio:<span id="prestigeMultiplier"></span>x
+                    <p><button class="prestigioBtn" onclick="prestigiar()">Prestigio</button> <span
+                            id="requisitosDoPrestigio"></span> Fragmentos celestiais</p>
+                    <p>
+                        <button type="button" onclick="prestigeTree(1)" class="prestigeUpg1" id="prestigeUpg1">2 Fichas:
+                            Vício... <br> Se
+                            torna possivel apostar fragmentos no cassino, sendo mais dificil de ganhar.</button>
+                        <button type="button" onclick="prestigeTree(2)" class="prestigeUpg2" id="prestigeUpg2">1 Ficha:
+                            Maquinas
+                            celestiais.<br>Os ganhos do cassino.
+                            agora geram fragmentos celestiais.</button>
+                    </p>
+                    <p>
+                        <button type="button" onclick="prestigeTree(3)" class="prestigeUpg3" id="prestigeUpg3">6 Fichas:
+                            Auto clicker.
+                            <br> Automaticamente ganha e lava dinheiro.</button>
+                        <button type="button" onclick="prestigeTree(4)" class="prestigeUpg4" id="prestigeUpg4">2 Fichas:
+                            Subdivisão
+                            econômica.<br> Os ganhos do
+                            cassino agora são em dinheiro limpo.</button>
+                    </p>
+                    <p>
+                        <button type="button" onclick="prestigeTree(5)" class="prestigeUpg5" id="prestigeUpg5">15
+                            Fichas: Ganhos
+                            celestiais. <br>Cada ficha celestial obitida aumenta os ganhos em 5%</button>
+                        <button type="button" onclick="prestigeTree(6)" class="prestigeUpg6" id="prestigeUpg6">7 Fichas:
+                            A casa sempre
+                            perde. <br> Aumenta a chance de
+                            ganhar no cassino.</button>
+                    </p>
+                    <p><button type="button" onclick="prestigeTree(7)" class="prestigeUpg7" id="prestigeUpg7">35 Fichas.
+                            <br>???</button>
+                    </p>
+                </div>
+                <div class="conta" id="conta">
+                    <p>WIP - conta</p>
+                </div>
+            </div>
+            <div class="menuBarra2">
+                <div class="btn1Barra2" id="btn1Barra2" onclick="doBarraPainel(12)"></div>
+                <div class="btn2Barra2" id="btn2Barra2" onclick="doBarraPainel(22)"></div>
+                <div class="btn3Barra2" id="btn3Barra2" onclick="doBarraPainel(32)"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
