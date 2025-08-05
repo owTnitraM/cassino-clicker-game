@@ -135,6 +135,7 @@ let isCoinSpining = true; // começa girando
 let isGambleGoing = false;
 let faceApostada = null; // null ate ser aferida
 let coinStoppedFor = 0; //  segundos
+let userAgreementAccepted = false;
 /* let gateVar1 = 0;
 let gateVar2 = 0;
 let gateVar3 = 0;
@@ -166,17 +167,42 @@ let gateVar28 = false;
 let gateVar29 = false;
 let gateVar30 = false; */
 // funçao de teste
-function as(a) {
+/* function as(a) {
     if (a == 1) { alert(0.0018 + 0.0021) }
     if (a == 2) { alert(hasCelestialMachines) }
     if (a == 3) { alert(hasCleanerCassino) }
     if (a == 4) { alert(hasBetterOdds) }
+} */
+
+if (document.getElementById("user-license-agreement-box").checked) {
+    document.getElementById("agreement-btn").style.backgroundColor = "green";
+} else {
+    document.getElementById("agreement-btn").style.backgroundColor = "rgb(50, 50, 50)";
+}
+
+document.getElementById("user-license-agreement-box").addEventListener("change", () => {
+    const btn = document.getElementById("agreement-btn");
+    if (document.getElementById("user-license-agreement-box").checked) {
+        btn.style.backgroundColor = "green";
+    } else {
+        btn.style.backgroundColor = "rgb(50, 50, 50)";
+    }
+});
+
+function doAgreement() {
+    const checkmark = document.querySelector("#user-license-agreement-box")
+    if (checkmark.checked) {
+        userAgreementAccepted = true;
+        document.getElementById("license").style.display = "none";
+    } else {
+        alert("You need to accept the terms and conditions before playing.")
+    }
 }
 
 function calcularValores() {
     // verifica se vc tem os upgrades e realiza as contas de acordo
-    if (hasFichasToBonus) { 
-        fichasGainMultiplier = (1 + (0.05 * fichasCelestiaisTotais)); 
+    if (hasFichasToBonus) {
+        fichasGainMultiplier = (1 + (0.05 * fichasCelestiaisTotais));
         fichaBonusDisplay = fichasCelestiaisTotais * 5;
     }
     if (!hasRendaToM1upg) {
